@@ -41,7 +41,7 @@ const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProp
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-contain mix-blend-normal"
+              className="w-full h-full object-contain mix-blend-normal transition-transform duration-300 hover:scale-105"
             />
           </div>
 
@@ -60,12 +60,12 @@ const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProp
               {product.price} €
             </div>
 
-            <div>
+            <div className="glass-effectFeedback">
               <h3 className="text-sm font-semibold mb-2">Matière</h3>
               <p className="text-gray-600">{product.material}</p>
             </div>
 
-            <div>
+            <div className="glass-effectFeedback">
               <h3 className="text-sm font-semibold mb-3">Couleur</h3>
               <div className="flex gap-2">
                 {colors.map((color) => (
@@ -74,7 +74,7 @@ const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProp
                     onClick={() => setSelectedColor(color)}
                     className={`px-4 py-2 border rounded-md text-sm transition-all
                       ${selectedColor === color 
-                        ? 'border-[#591C1C] text-[#591C1C]' 
+                        ? 'border-[#591C1C] text-[#591C1C] bg-red-50' 
                         : 'border-gray-200 text-gray-600 hover:border-gray-300'
                       }`}
                   >
@@ -84,34 +84,34 @@ const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProp
               </div>
             </div>
 
-            <div>
+            <div className="glass-effectFeedback">
               <h3 className="text-sm font-semibold mb-3">Quantité</h3>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center gap-4 bg-white/50 rounded-lg p-2">
                 <button
                   onClick={decrementQuantity}
-                  className="p-2 border rounded-md hover:bg-gray-50"
+                  className="p-2 border rounded-full hover:bg-red-50 hover:border-[#591C1C] transition-all duration-300"
                 >
-                  <Minus className="h-4 w-4" />
+                  <Minus className="h-4 w-4 text-[#591C1C]" />
                 </button>
-                <span className="w-12 text-center">{quantity}</span>
+                <span className="w-12 text-center text-lg font-semibold">{quantity}</span>
                 <button
                   onClick={incrementQuantity}
-                  className="p-2 border rounded-md hover:bg-gray-50"
+                  className="p-2 border rounded-full hover:bg-red-50 hover:border-[#591C1C] transition-all duration-300"
                 >
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-4 w-4 text-[#591C1C]" />
                 </button>
               </div>
             </div>
 
             <Button 
-              className="w-full bg-[#700100] hover:bg-[#8B0000] text-white py-6 rounded-md flex items-center justify-center gap-2 transition-all"
+              className="w-full bg-[#700100] hover:bg-[#8B0000] text-white py-6 rounded-md flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
               onClick={() => console.log('Added to cart:', { product, quantity, selectedColor })}
             >
               <ShoppingCart className="h-5 w-5" />
               Ajouter au panier
             </Button>
 
-            <div className="text-sm text-gray-600 space-y-2">
+            <div className="text-sm text-gray-600 space-y-2 glass-effectFeedback">
               <p>• Livraison gratuite en Tunisie</p>
               <p>• Retours gratuits sous 14 jours</p>
               <p>• Service client disponible 24/7</p>
