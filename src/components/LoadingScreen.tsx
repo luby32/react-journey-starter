@@ -36,13 +36,13 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
       setTimeout(() => {
         setPhase('complete');
         onLoadingComplete();
-      }, 1); // Delay before completing transition
-    }, 1);
+      }, 1000); // Increased delay for door animation
+    }, 500);
   };
 
   return (
     <div className="relative">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {phase !== 'complete' && (
           <>
             {/* Background Layer */}
@@ -117,7 +117,7 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
                 </motion.div>
               )}
 
-              {/* Split Screen Animation */}
+              {/* Split Door Animation */}
               {phase === 'transition' && (
                 <>
                   <motion.div
@@ -127,9 +127,18 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
                       duration: 1,
                       ease: [0.43, 0.13, 0.23, 0.96],
                     }}
-                    className="fixed inset-0 z-50 w-1/2"
-                    style={{ backgroundColor: '#591C1C' }}
-                  />
+                    className="fixed inset-0 z-50 w-1/2 bg-gradient-to-r from-[#591C1C] to-[#4a1717]"
+                    style={{
+                      boxShadow: '10px 0 20px rgba(0,0,0,0.3)',
+                      borderRight: '1px solid rgba(255,255,255,0.1)'
+                    }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="absolute inset-0 bg-[url('/logo.png')] bg-center bg-no-repeat bg-contain opacity-10"
+                    />
+                  </motion.div>
                   <motion.div
                     initial={{ x: 0 }}
                     animate={{ x: '100%' }}
@@ -137,9 +146,18 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
                       duration: 1,
                       ease: [0.43, 0.13, 0.23, 0.96],
                     }}
-                    className="fixed inset-0 z-50 w-1/2 left-1/2"
-                    style={{ backgroundColor: '#591C1C' }}
-                  />
+                    className="fixed inset-0 z-50 w-1/2 left-1/2 bg-gradient-to-l from-[#591C1C] to-[#4a1717]"
+                    style={{
+                      boxShadow: '-10px 0 20px rgba(0,0,0,0.3)',
+                      borderLeft: '1px solid rgba(255,255,255,0.1)'
+                    }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="absolute inset-0 bg-[url('/logo.png')] bg-center bg-no-repeat bg-contain opacity-10"
+                    />
+                  </motion.div>
                 </>
               )}
             </motion.div>
