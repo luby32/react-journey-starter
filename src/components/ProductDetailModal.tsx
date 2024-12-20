@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, ShoppingCart } from 'lucide-react';
+import { Minus, Plus, ShoppingCart, X } from 'lucide-react';
 
 interface ProductDetailModalProps {
   isOpen: boolean;
@@ -18,9 +18,9 @@ interface ProductDetailModalProps {
 
 const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProps) => {
   const [quantity, setQuantity] = React.useState(1);
-  const [selectedColor, setSelectedColor] = React.useState('Navy');
+  const [selectedColor, setSelectedColor] = React.useState('Noir');
 
-  const colors = ['Navy', 'Noir', 'Gris', 'Marron'];
+  const colors = ['Noir'];
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
@@ -28,6 +28,13 @@ const ProductDetailModal = ({ isOpen, onClose, product }: ProductDetailModalProp
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white">
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-100 transition-colors z-50"
+        >
+          <X className="h-5 w-5 text-gray-500" />
+        </button>
+        
         <div className="flex flex-col lg:flex-row">
           {/* Image Section */}
           <div className="w-full lg:w-1/2 h-[400px] lg:h-[600px] bg-gray-50">
