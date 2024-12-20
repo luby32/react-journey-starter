@@ -1,28 +1,25 @@
 import React from 'react';
-import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <div className="gradient-bg min-h-screen pt-16 flex items-center">
-      <div className="container mx-auto px-4 py-20">
-        <div className="max-w-3xl mx-auto text-center animate-fade-up">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Welcome to Your Next Project
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 mb-8">
-            Build something amazing with modern web technologies
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="default" className="bg-white text-primary hover:bg-white/90">
-              Get Started
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section className="relative h-screen">
+      <motion.div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('banner.png')",
+          willChange: 'transform' // Optimize GPU acceleration
+        }}
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.43, 0.13, 0.23, 0.96],
+          delay: 0.2
+        }}
+      />
+      <div className="absolute inset-0 bg-black/50" />
+    </section>
   );
 };
 
